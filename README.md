@@ -1,85 +1,159 @@
-# AI Akinator IPL — IPL Neural Guesser
+# 🏏 AI Akinator IPL — Neural Cricket Guesser
 
-A lightweight Akinator-style web app that guesses IPL players by asking a sequence of informative questions. The project demonstrates a compact Bayesian reasoning engine combined with optional LLM-based question rephrasing, session persistence, and a modern React + Tailwind frontend with telemetry and light/dark theme support.
+<div align="center">
 
----
+### 🤖 Think of an IPL Player. Let AI Guess It.
 
-**Key Features**
+An intelligent full-stack web application inspired by Akinator that uses AI-powered questioning, Bayesian reasoning, and machine learning concepts to guess IPL players through interactive gameplay.
 
-- **AI-driven question selection**: The backend computes posteriors across players and chooses questions that maximize expected information gain.
-- **Optional LLM rephrasing**: Questions can be rephrased with Google Gemini or OpenAI (fallback) when API keys are provided.
-- **Persistent sessions & learning**: Sessions are stored in MongoDB and LearningStats are updated to bias priors from historical plays.
-- **User accounts**: Basic auth endpoints allow saving sessions associated with users.
-- **Frontend telemetry**: Confidence meter, deduction log, and session history UI.
-- **Theme support**: Light and dark themes (persisted in `localStorage`).
+![React](https://img.shields.io/badge/Frontend-React-blue?style=for-the-badge\&logo=react)
+![Node.js](https://img.shields.io/badge/Backend-Node.js-green?style=for-the-badge\&logo=node.js)
+![Express](https://img.shields.io/badge/API-Express-black?style=for-the-badge\&logo=express)
+![MongoDB](https://img.shields.io/badge/Database-MongoDB-brightgreen?style=for-the-badge\&logo=mongodb)
+![Tailwind](https://img.shields.io/badge/UI-TailwindCSS-38B2AC?style=for-the-badge\&logo=tailwind-css)
+![Gemini AI](https://img.shields.io/badge/AI-Google_Gemini-orange?style=for-the-badge\&logo=google)
 
----
-
-**Tech Stack**
-
-- Backend: Node.js, Express, Mongoose (MongoDB), axios, dotenv, nodemon
-- Frontend: React (Vite), Tailwind CSS, Lucide icons
-- LLMs: Google Generative Language (Gemini) and OpenAI (optional fallback)
+</div>
 
 ---
 
-**Repository Layout**
+# 📌 Overview
 
-- `Backend/` — Express API, Mongoose models, routes and `.env` configuration.
-  - See [Backend/server.js](Backend/server.js) and [Backend/routes/ai.js](Backend/routes/ai.js)
-- `Frontend/` — React app built with Vite and Tailwind CSS.
-  - See [Frontend/src/App.jsx](Frontend/src/App.jsx)
+AI Akinator IPL is a smart web application where users think of an IPL player and the AI attempts to guess the player by asking strategic questions.
+
+The platform combines:
+
+* 🧠 AI-driven decision making
+* 📊 Bayesian probability logic
+* ⚡ Real-time gameplay
+* 🔐 Secure authentication
+* 🌙 Modern responsive UI
+* 🤖 Gemini AI integration
+
+This project was built using the MERN stack and designed to deliver a fun, interactive, and intelligent cricket experience.
 
 ---
 
-**Environment variables**
+# ✨ Features
 
-The backend reads configuration from environment variables. Create a `Backend/.env` (do NOT commit it).
+## 🧠 Intelligent Guessing Engine
 
-Required / recommended variables:
+* AI asks optimized questions to narrow down possible IPL players
+* Uses probability-based logic for smarter predictions
+* Dynamic player deduction system
 
-- `PORT` — port for backend (default `5000`)
-- `MONGODB_URI` — MongoDB connection string
-- `JWT_SECRET` — secret for signing auth tokens
-- `GEMINI_API_KEY` — Google Generative Language API key (optional)
-- `OPENAI_API_KEY` — OpenAI API key (optional; used as fallback)
-- `GMAIL_USER` / `GMAIL_PASS` — optional SMTP creds for email flows
-- `FRONTEND_URL` — origin for CORS (default `http://localhost:5173`)
-- `MAX_QUESTIONS` — maximum turns (backend default used if absent)
-- `CONFIDENCE_THRESHOLD` — probability threshold to make a guess (0–1)
+## 🤖 Gemini AI Integration
 
-Example (do not store secrets in VCS):
+* Generates natural and conversational questions
+* Improves gameplay interaction and realism
+* Enhances user engagement with AI-generated responses
 
-```env
-PORT=5000
-MONGODB_URI=mongodb://127.0.0.1:27017/ai
-JWT_SECRET=replace-with-a-secure-secret
-GEMINI_API_KEY=
-OPENAI_API_KEY=
-GMAIL_USER=
-GMAIL_PASS=
-FRONTEND_URL=http://localhost:5173
-MAX_QUESTIONS=8
-CONFIDENCE_THRESHOLD=0.8
-NODE_ENV=development
+## 🔐 Authentication System
+
+* User registration and login
+* JWT-based authentication
+* Password encryption using bcrypt
+* Protected routes and sessions
+
+## 📊 Session Tracking
+
+* Save gameplay sessions
+* Track previous guesses and results
+* Store player interaction history
+
+## 🎨 Modern UI/UX
+
+* Responsive design for all devices
+* Smooth animations and transitions
+* Dark and Light mode support
+* Interactive gameplay interface
+
+## ⚡ Real-Time Gameplay Experience
+
+* Fast API communication
+* Seamless frontend-backend integration
+* Optimized performance using Vite
+
+---
+
+# 🛠️ Tech Stack
+
+| Category        | Technologies                 |
+| --------------- | ---------------------------- |
+| Frontend        | React.js, Vite, Tailwind CSS |
+| Backend         | Node.js, Express.js          |
+| Database        | MongoDB, Mongoose            |
+| Authentication  | JWT, bcrypt.js               |
+| AI Integration  | Google Gemini API            |
+| Version Control | Git & GitHub                 |
+| API Testing     | Postman                      |
+
+---
+
+# 📂 Project Structure
+
+```bash
+AI-Akinator-IPL/
+│
+├── Backend/
+│   ├── server.js
+│   ├── routes/
+│   ├── models/
+│   ├── middleware/
+│   ├── controllers/
+│   ├── config/
+│   └── package.json
+│
+├── Frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── assets/
+│   │   └── App.jsx
+│   ├── public/
+│   └── package.json
+│
+└── README.md
 ```
 
 ---
 
-**Running locally**
+# 🚀 Installation & Setup
 
-Prerequisites: Node.js (16+ recommended), npm, MongoDB (local or hosted).
+## 1️⃣ Clone the Repository
 
-Start backend:
+```bash
+git clone https://github.com/your-username/AI-Akinator-IPL.git
+cd AI-Akinator-IPL
+```
+
+---
+
+## 2️⃣ Setup Backend
 
 ```bash
 cd Backend
 npm install
-# create or edit Backend/.env with values above
+```
+
+### Create `.env` File
+
+```env
+PORT=5000
+MONGODB_URI=your_mongodb_connection
+JWT_SECRET=your_secret_key
+GEMINI_API_KEY=your_gemini_api_key
+```
+
+### Run Backend Server
+
+```bash
 npm run dev
 ```
 
-Start frontend:
+---
+
+## 3️⃣ Setup Frontend
 
 ```bash
 cd Frontend
@@ -87,49 +161,130 @@ npm install
 npm run dev
 ```
 
-Open the frontend at `http://localhost:5173` (or Vite's dev URL) and confirm the backend health at `http://localhost:5000/api/health`.
+Frontend will run on:
+
+```bash
+http://localhost:5173
+```
 
 ---
 
-**API (selected endpoints)**
+# 🎮 How It Works
 
-- `GET /api/health` — health check
-- `POST /api/ai/next` — body: `{ history: [...] }` → returns `{ type: 'question' | 'guess', text, attribute?, reasoning?, confidence? }`
-- `POST /api/sessions` — save a session (body: `{ user, history, result }`)
-- `GET /api/sessions?user=<userId>&limit=<n>` — fetch saved sessions (most recent first)
-- `POST /api/auth/register` — create user (see `Backend/routes/auth.js`)
-- `POST /api/auth/login` — login to receive JWT
-
-See the route files in `Backend/routes/` for full details.
+1. User thinks of an IPL player.
+2. AI starts asking intelligent questions.
+3. User answers with Yes / No / Maybe.
+4. AI updates probabilities after each answer.
+5. System predicts the most likely player.
+6. Results and sessions can be saved.
 
 ---
 
-**LLM & Rephrase behavior**
+# 🔥 Key Highlights
 
-When an LLM key is set the backend will try to rephrase selected questions to make them more conversational. The code tries OpenAI (if `OPENAI_API_KEY` is present) and falls back to Google Gemini (`GEMINI_API_KEY`) if configured. If the remote rephrase fails (404 or auth issue), the backend logs a helpful message and returns the default question text.
-
----
-
-**Frontend notes**
-
-- The app includes a History modal (pulls `GET /api/sessions?user=<id>`), a Theme toggle (light/dark stored in `localStorage`), and a Telemetry sidebar showing confidence and deduction logs.
-- Key frontend files: [Frontend/src/App.jsx](Frontend/src/App.jsx), [Frontend/src/components/TelemetrySidebar.jsx](Frontend/src/components/TelemetrySidebar.jsx)
-
----
-
-**Development tips & next steps**
-
-- Add a `Backend/.env.example` containing placeholder keys to help onboarding (do not commit secrets).
-- Protect API keys in production (use secrets manager / environment injection).
-- Add pagination or a CSV export for the history modal if you want bulk analysis of plays.
-- Consider adding end-to-end tests for the AI selection logic (unit tests around information gain and posterior updates).
+* Full MERN Stack Project
+* AI-Powered Gameplay
+* Gemini API Integration
+* Authentication System
+* Responsive Design
+* Professional UI/UX
+* Real-Time API Handling
+* Scalable Architecture
 
 ---
 
-**Contributing**
+# 🧪 API Endpoints
 
-PRs welcome — please open issues for feature requests or bugs. Keep changes focused, add tests where appropriate, and avoid committing credentials.
+## Authentication
 
-**License**
+| Method | Endpoint             | Description         |
+| ------ | -------------------- | ------------------- |
+| POST   | `/api/auth/register` | Register new user   |
+| POST   | `/api/auth/login`    | Login existing user |
+| GET    | `/api/auth/me`       | Get current user    |
 
-This project is provided as-is. Add a license file if you plan to open-source it (e.g., MIT).
+---
+
+## AI Routes
+
+| Method | Endpoint       | Description               |
+| ------ | -------------- | ------------------------- |
+| POST   | `/api/ai/next` | Generate next AI question |
+
+---
+
+## Session Routes
+
+| Method | Endpoint        | Description             |
+| ------ | --------------- | ----------------------- |
+| POST   | `/api/sessions` | Save gameplay session   |
+| GET    | `/api/sessions` | Fetch previous sessions |
+
+---
+
+# 🌐 Deployment
+
+## Frontend Deployment
+
+* Versel
+* Netlify
+
+## Backend Deployment
+
+* Render
+* Railway
+* Cyclic
+
+## Database
+
+* MongoDB Compass
+
+---
+
+# 👨‍💻 Team Contribution
+
+| Role               | Responsibility                  |
+| ------------------ | ------------------------------- |
+| Frontend Developer | UI Design & React Integration   |
+| Backend Developer  | APIs, Authentication & Database |
+| AI Integration     | Gemini API & AI Logic           |
+| Database Manager   | MongoDB Schema & Data Handling  |
+
+---
+
+# 🧠 Future Improvements
+
+* 🏆 Multiplayer Mode
+* 📈 Better AI Learning System
+* 🎤 Voice-Based Questions
+* 🌍 Multi-language Support
+* 📱 Mobile Application
+* 🧾 Leaderboards & Rankings
+
+---
+
+# 🤝 Contributing
+
+Contributions are always welcome.
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
+
+---
+
+# 📜 License
+
+This project is licensed under the MIT License.
+
+---
+
+# ⭐ Support
+
+If you liked this project, give it a ⭐ on GitHub and share it with others.
+
+
+
+
