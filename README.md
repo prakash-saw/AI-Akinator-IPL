@@ -139,15 +139,23 @@ npm install
 ### Create `.env` File
 
 ```env
-PORT=5000
-MONGODB_URI=your_mongodb_connection
-JWT_SECRET=your_secret_key
-GEMINI_API_KEY=your_gemini_api_key
+`PORT` — port for backend (default `5000`)
+- `MONGODB_URI` — MongoDB connection string
+- `JWT_SECRET` — secret for signing auth tokens
+- `GEMINI_API_KEY` — Google Generative Language API key (optional)
+- `OPENAI_API_KEY` — OpenAI API key (optional; used as fallback)
+- `GMAIL_USER` / `GMAIL_PASS` — optional SMTP creds for email flows
+- `FRONTEND_URL` — origin for CORS (default `http://localhost:5173`)
+- `MAX_QUESTIONS` — maximum turns (backend default used if absent)
+- `CONFIDENCE_THRESHOLD` — probability threshold to make a guess (0–1)
 ```
 
 ### Run Backend Server
 
 ```bash
+cd Backend
+npm install
+# create or edit Backend/.env with values above
 npm run dev
 ```
 
@@ -166,7 +174,7 @@ Frontend will run on:
 ```bash
 http://localhost:5173
 ```
-
+Open the frontend at `http://localhost:5173` (or Vite's dev URL) and confirm the backend health at `http://localhost:5000/api/health`.
 ---
 
 # 🎮 How It Works
@@ -260,6 +268,12 @@ http://localhost:5173
 * 🌍 Multi-language Support
 * 📱 Mobile Application
 * 🧾 Leaderboards & Rankings
+
+---
+
+**LLM & Rephrase behavior**
+
+When an LLM key is set the backend will try to rephrase selected questions to make them more conversational. The code tries OpenAI (if `OPENAI_API_KEY` is present) and falls back to Google Gemini (`GEMINI_API_KEY`) if configured. If the remote rephrase fails (404 or auth issue), the backend logs a helpful message and returns the default question text.
 
 ---
 
