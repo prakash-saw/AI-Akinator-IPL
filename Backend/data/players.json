@@ -1,0 +1,145 @@
+[
+  {
+    "name": "Virat Kohli",
+    "primarily_batsman": true,
+    "primarily_bowler": false,
+    "allrounder": false,
+    "ever_captained": true,
+    "finisher": false,
+    "represented_national_team": true,
+    "bowls_spin": false,
+    "single_franchise": true
+  },
+  {
+    "name": "Rohit Sharma",
+    "primarily_batsman": true,
+    "primarily_bowler": false,
+    "allrounder": false,
+    "ever_captained": true,
+    "finisher": true,
+    "represented_national_team": true,
+    "bowls_spin": false,
+    "single_franchise": true
+  },
+  {
+    "name": "MS Dhoni",
+    "primarily_batsman": true,
+    "primarily_bowler": false,
+    "allrounder": false,
+    "ever_captained": true,
+    "finisher": true,
+    "represented_national_team": true,
+    "bowls_spin": false,
+    "single_franchise": true
+  },
+  {
+    "name": "AB de Villiers",
+    "primarily_batsman": true,
+    "primarily_bowler": false,
+    "allrounder": false,
+    "ever_captained": false,
+    "finisher": true,
+    "represented_national_team": true,
+    "bowls_spin": false,
+    "single_franchise": true
+  },
+  {
+    "name": "Andre Russell",
+    "primarily_batsman": false,
+    "primarily_bowler": false,
+    "allrounder": true,
+    "ever_captained": false,
+    "finisher": true,
+    "represented_national_team": true,
+    "bowls_spin": false,
+    "single_franchise": false
+  },
+  {
+    "name": "Jasprit Bumrah",
+    "primarily_batsman": false,
+    "primarily_bowler": true,
+    "allrounder": false,
+    "ever_captained": false,
+    "finisher": false,
+    "represented_national_team": true,
+    "bowls_spin": false,
+    "single_franchise": false
+  },
+  {
+    "name": "Ravindra Jadeja",
+    "primarily_batsman": false,
+    "primarily_bowler": false,
+    "allrounder": true,
+    "ever_captained": false,
+    "finisher": false,
+    "represented_national_team": true,
+    "bowls_spin": true,
+    "single_franchise": true
+  },
+  {
+    "name": "Kieron Pollard",
+    "primarily_batsman": false,
+    "primarily_bowler": false,
+    "allrounder": true,
+    "ever_captained": false,
+    "finisher": true,
+    "represented_national_team": true,
+    "bowls_spin": false,
+    "single_franchise": false
+  },
+  {
+    "name": "Chris Gayle",
+    "primarily_batsman": true,
+    "primarily_bowler": false,
+    "allrounder": false,
+    "ever_captained": false,
+    "finisher": true,
+    "represented_national_team": true,
+    "bowls_spin": false,
+    "single_franchise": false
+  },
+  {
+    "name": "KL Rahul",
+    "primarily_batsman": true,
+    "primarily_bowler": false,
+    "allrounder": false,
+    "ever_captained": false,
+    "finisher": false,
+    "represented_national_team": true,
+    "bowls_spin": false,
+    "single_franchise": false
+  },
+  {
+    "name": "Ben Stokes",
+    "primarily_batsman": false,
+    "primarily_bowler": false,
+    "allrounder": true,
+    "ever_captained": false,
+    "finisher": false,
+    "represented_national_team": true,
+    "bowls_spin": false,
+    "single_franchise": false
+  },
+  {
+    "name": "Suresh Raina",
+    "primarily_batsman": true,
+    "primarily_bowler": false,
+    "allrounder": false,
+    "ever_captained": false,
+    "finisher": true,
+    "represented_national_team": true,
+    "bowls_spin": false,
+    "single_franchise": true
+  },
+  {
+    "name": "David Warner",
+    "primarily_batsman": true,
+    "primarily_bowler": false,
+    "allrounder": false,
+    "ever_captained": false,
+    "finisher": false,
+    "represented_national_team": true,
+    "bowls_spin": false,
+    "single_franchise": false
+  }
+]

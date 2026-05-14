@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Password Reset</title>
+    <style>
+      body { font-family: system-ui, sans-serif; background:#0f172a; color:#e6eef8; display:flex; align-items:center; justify-content:center; height:100vh }
+      .card { background:#0b1220; padding:24px; border-radius:12px; width:100%; max-width:420px }
+      input, button { width:100%; padding:10px 12px; margin-top:10px; border-radius:8px; border:1px solid #334155; background:#071024; color:#e6eef8 }
+      button { background:#f59e0b; color:#061018; border:none; font-weight:600 }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h2>Password Reset</h2>
+      <p id="msg">Enter a new password for your account.</p>
+      <input id="token" placeholder="Reset token" />
+      <input id="password" type="password" placeholder="New password" />
+      <button id="submit">Reset Password</button>
+      <p id="status"></p>
+    </div>
+
+    <script>
+      const params = new URLSearchParams(location.search)
+      const tokenParam = params.get('token')
+      if (tokenParam) document.getElementById('token').value = tokenParam
+
+      document.getElementById('submit').addEventListener('click', async () => {
+        const token = document.getElementById('token').value.trim()
+        const password = document.getElementById('password').value.trim()
+        if (!token || !password) return alert('Token and new password required')
+        try {
+          const res = await fetch('/api/auth/reset', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token, password })
+          })
+          const data = await res.json()
+          if (!res.ok) throw new Error(data.error || 'Reset failed')
+          document.getElementById('status').innerText = 'Password updated. You can now close this page and sign in.'
+        } catch (err) {
+          console.error(err)
+          alert('Could not reset password')
+        }
+      })
+    </script>
+  </body>
+</html>
