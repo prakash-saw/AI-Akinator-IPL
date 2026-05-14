@@ -183,8 +183,28 @@ router.post('/next', async (req, res) => {
       return null
     }
 
-    // If OpenAI key present, try it first (safer for many users)
-    if (openaiKey) {
+    const hasOpenAI = openaiKey && !/^your[-_]/i.test(openaiKey)
+    const hasGemini = geminiKey && !/^your[-_]/i.test(geminiKey)
+
+    if (hasGemini) {
+      try {
+        const payload = {
+          prompt: { text: `Rephrase as a short conversational question: ${questionText}` },
+          temperature: 0.2,
+          maxOutputTokens: 60
+        }
+        const url = `https://generativelanguage.googleapis.com/v1beta2/models/gemini-2.0-flash:generateText?key=${geminiKey}`
+        const response = await axios.post(url, payload, { headers: { 'Content-Type': 'application/json' } })
+        const textResponse = response.data?.candidates?.[0]?.output
+        if (tryReturn(textResponse)) return
+      } catch (e) {
+        console.warn('Gemini rephrase failed:', e.response?.status, e.response?.data || e.message)
+        if (e.response?.status === 404) console.warn('Gemini model not found or API endpoint incorrect. Check GEMINI_API_KEY and model access.')
+        if (e.response?.status === 403 || e.response?.status === 401) console.warn('Gemini key is invalid or lacks Generative AI API access.')
+      }
+    }
+
+    if (!hasGemini && hasOpenAI) {
       try {
         const payload = {
           model: 'gpt-3.5-turbo',
@@ -200,23 +220,8 @@ router.post('/next', async (req, res) => {
       }
     }
 
-    // Try Gemini key if present and not a placeholder
-    if (geminiKey && !/^your[-_]/i.test(geminiKey)) {
-      try {
-        const payload = {
-          contents: [{ parts: [{ text: `Rephrase as a short conversational question: ${questionText}` }] }]
-        }
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`
-        const response = await axios.post(url, payload, { headers: { 'Content-Type': 'application/json' } })
-        const textResponse = response.data?.candidates?.[0]?.content?.parts?.[0]?.text
-        if (tryReturn(textResponse)) return
-      } catch (e) {
-        console.warn('Gemini rephrase failed:', e.response?.status, e.response?.data || e.message)
-        // If 404 specifically, log a hint for users
-        if (e.response?.status === 404) console.warn('Gemini model not found or API endpoint incorrect. Check GEMINI_API_KEY and model access.')
-      }
-    } else if (geminiKey) {
-      console.warn('GEMINI_API_KEY looks like a placeholder — skipping remote rephrase.')
+    if (!hasGemini && !hasOpenAI) {
+      console.warn('No Gemini or OpenAI key configured; returning the original question text.')
     }
 
     return res.json({ type: 'question', text: questionText, attribute: best.attr, reasoning: `Selected to maximize information gain (${best.infoGain.toFixed(3)})`, confidence: Math.round((top?.prob || 0) * 100) })

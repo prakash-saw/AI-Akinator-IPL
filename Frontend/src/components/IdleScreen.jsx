@@ -1,19 +1,18 @@
 import { Trophy, ChevronRight } from 'lucide-react';
 
 const IdleScreen = ({ onStart, maxQuestions }) => (
-  <div className="flex-1 flex flex-col items-center justify-center text-center p-8 bg-slate-900/40 rounded-3xl border border-slate-800/50 backdrop-blur-xl">
-    <Trophy className="w-20 h-20 text-amber-500 mb-6 drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]" />
-    <h2 className="text-4xl font-black mb-4 tracking-tight">Think of an IPL Player</h2>
-    <p className="text-lg text-slate-400 max-w-lg mb-8 leading-relaxed">
-      I will ask up to {maxQuestions} intelligent questions to deduce exactly who you are thinking of. Present or past legends, the AI knows them all.
+  <div className="flex-1 flex flex-col items-center justify-center text-center p-8 rounded-3xl border border-[var(--panel-border)] backdrop-blur-xl shadow-[var(--shadow)] theme-panel">
+    <Trophy className="w-20 h-20 text-[var(--accent)] mb-6 drop-shadow-[0_0_30px_rgba(245,158,11,0.35)]" />
+    <h2 className="text-4xl font-black mb-4 tracking-tight text-[var(--text-color)]">Think of an IPL Player</h2>
+    <p className="text-lg text-[var(--subtext-color)] max-w-lg mb-8 leading-relaxed">
+      Answer easy, human-friendly questions while the AI analyzes the best fit from IPL history. You can switch themes anytime for a cleaner view.
     </p>
     <button 
       onClick={onStart}
-      className="group relative px-8 py-4 bg-slate-100 text-slate-950 font-bold text-lg rounded-full overflow-hidden shadow-[0_0_40px_rgba(241,245,249,0.15)] hover:shadow-[0_0_60px_rgba(241,245,249,0.25)] transition-all active:scale-95"
+      className="group relative px-8 py-4 bg-[var(--accent)] text-slate-950 font-bold text-lg rounded-full overflow-hidden shadow-[0_20px_50px_rgba(245,158,11,0.25)] hover:shadow-[0_24px_70px_rgba(245,158,11,0.35)] transition-all active:scale-95"
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-amber-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       <span className="relative flex items-center gap-2">
-        Start Challenge <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        Start Challenge <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
       </span>
     </button>
   </div>

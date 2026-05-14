@@ -13,7 +13,7 @@ const Login = ({ onLogin }) => {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email: email.trim().toLowerCase(), password })
       });
       const data = await res.json();
       if (!res.ok) {
@@ -41,7 +41,7 @@ const Login = ({ onLogin }) => {
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full bg-slate-950/50 border border-slate-800 rounded-xl py-3 pl-12 pr-4 text-slate-200 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 transition-all placeholder:text-slate-600"
+          className="w-full bg-slate-950/50 border border-slate-800 rounded-xl py-3 pl-12 pr-4 text-slate-200 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 transition-all placeholder:text-slate-600 theme-input"
         />
       </div>
       <div className="relative">
@@ -52,7 +52,7 @@ const Login = ({ onLogin }) => {
           required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full bg-slate-950/50 border border-slate-800 rounded-xl py-3 pl-12 pr-4 text-slate-200 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 transition-all placeholder:text-slate-600"
+          className="w-full bg-slate-950/50 border border-slate-800 rounded-xl py-3 pl-12 pr-4 text-slate-200 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 transition-all placeholder:text-slate-600 theme-input"
         />
       </div>
 

@@ -7,11 +7,11 @@ const AuthScreen = ({ onLogin }) => {
   const [isLogin, setIsLogin] = useState(true);
 
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden theme-bg-muted">
       <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none"></div>
       <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-amber-600/10 rounded-full blur-[120px] pointer-events-none"></div>
       
-      <div className="w-full max-w-md bg-slate-900/60 border border-slate-800/60 rounded-3xl p-8 backdrop-blur-xl shadow-2xl relative z-10 animate-in zoom-in-95 duration-500">
+      <div className="w-full max-w-md bg-slate-900/60 border border-slate-800/60 rounded-3xl p-8 backdrop-blur-xl shadow-2xl relative z-10 animate-in zoom-in-95 duration-500 theme-panel">
         <div className="flex flex-col items-center mb-8">
           <div className="bg-gradient-to-br from-amber-400 to-orange-600 p-3 rounded-2xl shadow-lg shadow-orange-500/20 mb-4">
             <Brain className="w-8 h-8 text-slate-950" />

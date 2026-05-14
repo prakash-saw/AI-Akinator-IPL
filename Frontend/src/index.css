@@ -1,5 +1,141 @@
-/* Base background setup for dark mode */
+:root {
+  color-scheme: dark;
+  --body-bg: #020617;
+  --text-color: #f8fafc;
+  --subtext-color: #94a3b8;
+  --panel: rgba(15, 23, 42, 0.88);
+  --panel-strong: rgba(15, 23, 42, 0.98);
+  --panel-border: rgba(148, 163, 184, 0.18);
+  --surface: rgba(15, 23, 42, 0.75);
+  --surface-alt: rgba(15, 23, 42, 0.55);
+  --shadow: 0 25px 90px rgba(0, 0, 0, 0.28);
+  --accent: #f59e0b;
+  --accent-strong: #f97316;
+  --accent-soft: rgba(245, 158, 11, 0.18);
+  --border: rgba(148, 163, 184, 0.18);
+  --success: #34d399;
+  --danger: #f87171;
+  --info: #60a5fa;
+}
+
+.light {
+  color-scheme: light;
+  --body-bg: #f8fafc;
+  --text-color: #0f172a;
+  --subtext-color: #64748b;
+  --panel: rgba(255, 255, 255, 0.92);
+  --panel-strong: rgba(255, 255, 255, 1);
+  --panel-border: rgba(203, 213, 225, 0.55);
+  --surface: rgba(255, 255, 255, 0.9);
+  --surface-alt: rgba(248, 250, 252, 0.96);
+  --shadow: 0 30px 100px rgba(15, 23, 42, 0.08);
+  --accent: #d97706;
+  --accent-strong: #ea580c;
+  --accent-soft: rgba(245, 158, 11, 0.14);
+  --border: rgba(203, 213, 225, 0.7);
+  --success: #16a34a;
+  --danger: #dc2626;
+  --info: #2563eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100%;
+}
+
 body {
-  background-color: #020617; /* slate-950 */
-  color: #f1f5f9; /* slate-100 */
+  margin: 0;
+  background: radial-gradient(circle at top left, rgba(245, 158, 11, 0.16), transparent 25%),
+    radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.12), transparent 22%),
+    var(--body-bg);
+  color: var(--text-color);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button, input, textarea, select {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(245, 158, 11, 0.3);
+  color: #000;
+}
+
+.app-shell {
+  min-height: 100vh;
+  position: relative;
+}
+
+.theme-panel,
+.theme-panel-secondary,
+.theme-error-card,
+.theme-history-card {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  color: var(--text-color);
+}
+
+.theme-panel-secondary {
+  background: var(--surface-alt);
+}
+
+.theme-toolbar-button {
+  background: var(--surface);
+  border: 1px solid var(--panel-border);
+  color: var(--text-color);
+}
+
+.theme-toolbar-button:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.theme-input {
+  background: var(--surface);
+  border: 1px solid var(--panel-border);
+  color: var(--text-color);
+}
+
+.theme-input::placeholder {
+  color: var(--subtext-color);
+}
+
+.theme-error-card {
+  background: rgba(127, 29, 29, 0.14);
+  border-color: rgba(248, 113, 113, 0.24);
+}
+
+.theme-history-card {
+  background: rgba(148, 163, 184, 0.08);
+  border-color: rgba(148, 163, 184, 0.18);
+}
+
+.theme-border {
+  border-color: var(--border);
+}
+
+.theme-heading-gradient {
+  background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.55);
 }

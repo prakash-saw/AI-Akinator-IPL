@@ -71,6 +71,8 @@ export default function App() {
 
   useEffect(() => {
     localStorage.setItem('theme', theme)
+    document.documentElement.classList.remove('light', 'dark')
+    document.documentElement.classList.add(theme)
   }, [theme])
 
   const toggleTheme = () => setTheme(t => (t === 'dark' ? 'light' : 'dark'))
@@ -158,22 +160,22 @@ export default function App() {
     setCurrentTurn(null);
   };
 
-  if (!user) {
-    return <AuthScreen onLogin={setUser} />;
-  }
-
   return (
-    <div className={`min-h-screen font-sans selection:bg-amber-500/30 ${theme === 'dark' ? 'bg-slate-950 text-slate-100' : 'bg-white text-slate-900'}`}>
+    <div className={`app-shell ${theme} min-h-screen font-sans selection:bg-amber-500/30 bg-[var(--body-bg)] text-[var(--text-color)]`}>
       {/* Background ambient effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[120px]"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-amber-600/10 rounded-full blur-[120px]"></div>
+        <div className="absolute top-[-10%] left-[-10%] w-[38%] h-[38%] bg-blue-500/12 rounded-full blur-[120px]"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[38%] h-[38%] bg-amber-500/12 rounded-full blur-[120px]"></div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 py-8 relative z-10 flex flex-col min-h-screen">
-        <Header gameState={gameState} onReset={startGame} user={user} onLogout={handleLogout} onToggleTheme={toggleTheme} theme={theme} onShowHistory={() => setShowHistory(true)} />
+      {user ? (
+        <div className="max-w-6xl mx-auto px-4 py-8 relative z-10 flex flex-col min-h-screen">
+          <Header gameState={gameState} onReset={startGame} user={user} onLogout={handleLogout} onToggleTheme={toggleTheme} theme={theme} onShowHistory={() => setShowHistory(true)} />
+          <div className="mb-6 p-5 rounded-3xl theme-panel-secondary border border-[var(--panel-border)] shadow-[var(--shadow)] text-sm text-[var(--subtext-color)]">
+            <strong className="text-[var(--text-color)]">Tip:</strong> Think of any IPL player and answer confidently. The AI uses Gemini for polished question phrasing, and you can switch between light and dark mode anytime.
+          </div>
 
-        <main className="flex-1 flex flex-col lg:flex-row gap-6">
+          <main className="flex-1 flex flex-col lg:flex-row gap-6">
           <div className="flex-1 flex flex-col">
             {gameState === 'idle' && <IdleScreen onStart={startGame} maxQuestions={MAX_QUESTIONS} />}
             {gameState === 'error' && <ErrorScreen errorMsg={errorMsg} onRetry={startGame} />}
@@ -217,6 +219,9 @@ export default function App() {
           />
         </main>
       </div>
+      ) : (
+        <AuthScreen onLogin={setUser} />
+      )}
 
       {showHistory && <HistoryModal user={user} onClose={() => setShowHistory(false)} />}
 
